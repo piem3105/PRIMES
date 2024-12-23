@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primes</title>
+  <link rel="icon" href="pics/removed bg logo.png" type="image/png">
+  <style>
+    /* Internal CSS */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 36px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 18px;
+      transition: ease 0.3s;
+    }
+
+    nav ul li a:hover {
+      border-bottom: 3px solid #ff8303;
+      transform: scale(1.1);
+    }
+
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .scroll-item-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: #fff4e6;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      width: 200px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      scroll-snap-align: start;
+    }
+
+    .scroll-item-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-item-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .scroll-item-card h3 {
+      font-size: 20px;
+      color: #333;
+      margin: 15px 0 10px;
+    }
+
+    .scroll-item-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .scroll-item-card .price {
+      background-color: #ff8303;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background-color: #333;
+      border-radius: 50%;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #ff8303;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="home.html"><img src="pics/etup brand.jpg" width="130" height="80" alt="Primes"></a></h1>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="service.html">Menu</a></li>
+        <li><a href="contact.html">Contacts</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <div class="scroll-container">
+    <div class="scroll-item-card">
+      <img src="primes img/ham&cheese.jpg" alt="Ham & Cheese">
+      <h3>Ham & Cheese</h3>
+      <p>Ham & cheese topped with aonori & bonito flakes with signature sauce & mayo.</p>
+      <div class="price">₱70.00</div>
+    </div>
+
+    <div class="scroll-item-card">
+        <div>
+      <img src="primes img/kaniyaki.jpg" alt="Kaniyaki Takoyaki">
+      <h3>Kaniyaki Takoyaki</h3>
+      <p>Crab stick with veggies topped with aonori and bonito flakes with signature sauce & mayo.</p>
+      <div class="price">₱80.00</div>
+    </div>
+
+    <div>
+      <img src="primes img/flaming cheese.jpg" alt="Flaming Cheese">
+      <h3>Flaming Cheese</h3>
+      <p>Squid with veggies topped with aonori & bonito flakes with signature sauce, mayo, cheese sauce & sriracha.</p>
+      <div class="price">₱100.00</div>
+    </div>
+
+    <div class="scroll-item-card">
+      <img src="primes img/squidbits.jpg" alt="Squidbits Takoyaki">
+      <h3>Squidbits Takoyaki</h3>
+      <p>Squidbits with veggies topped with aonori & bonito flakes with signature sauce & mayo.</p>
+      <div class="price">₱70.00</div>
+    </div>
+
+    <div class="scroll-item-card">
+      <img src="primes img/cheesebomb.jpg" alt="Cheesebomb Takoyaki">
+      <h3>Cheesebomb Takoyaki</h3>
+      <p>Squid with cheese, topped with aonori, mozzarella, signature sauce, mayo & cheese sauce.</p>
+      <div class="price">₱190.00</div>
+    </div>
+  </div>
+
+  <div class="dots">
+    <div class="dot" data-index="0"></div>
+    <div class="dot" data-index="1"></div>
+    <div class="dot" data-index="2"></div>
+    <div class="dot" data-index="3"></div>
+    <div class="dot" data-index="4"></div>
+  </div>
+
+  <script>
+    const scrollContainer = document.querySelector('.scroll-container');
+    const dots = document.querySelectorAll('.dot');
+
+    let currentIndex = 0;
+
+    function updateDots() {
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[currentIndex].classList.add('active');
+    }
+
+    function scrollCarousel() {
+      scrollContainer.scrollBy({ left: 2 * 210, behavior: 'smooth' });
+      currentIndex = (currentIndex + 1) % dots.length;
+      updateDots();
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        currentIndex = parseInt(dot.dataset.index);
+        scrollContainer.scrollTo({ left: currentIndex * 2 * 210, behavior: 'smooth' });
+        updateDots();
+      });
+    });
+
+    setInterval(scrollCarousel, 3000); // Auto scroll every 3 seconds
+  </script>
+</body>
+</html>
